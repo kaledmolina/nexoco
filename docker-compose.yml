@@ -6,8 +6,8 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: rootpassword
       MYSQL_DATABASE: news_portal
-    ports:
-      - "3306:3306"
+    # Los puertos 3306 se eliminaron por seguridad. 
+    # La web igual puede conectarse internamente.
     volumes:
       - mysql_data:/var/lib/mysql
 
@@ -17,13 +17,14 @@ services:
       dockerfile: Dockerfile
     container_name: nextjs-web-app
     ports:
-      - "3000:3000"
+      - "127.0.0.1:3000:3000" # Modificado para obligar a pasar por CloudPanel
     depends_on:
       - db
     environment:
       - DATABASE_URL=mysql://root:rootpassword@db:3306/news_portal
-      - NEXTAUTH_URL=http://localhost:3000
+      - NEXTAUTH_URL=https://pulso24.tech # CRÍTICO para que el login funcione
       - NEXTAUTH_SECRET=news-portal-secret-key-change-in-production
+      - HOSTNAME=0.0.0.0 # <-- LA SOLUCIÓN AL ERROR 502
     restart: always
 
 volumes:
