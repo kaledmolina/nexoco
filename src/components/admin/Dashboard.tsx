@@ -87,15 +87,20 @@ function StatCard({
   icon,
   description,
   trend,
+  onClick,
 }: {
   title: string
   value: number | string
   icon: React.ReactNode
   description?: string
   trend?: string
+  onClick?: () => void
 }) {
   return (
-    <Card>
+    <Card
+      className={onClick ? "cursor-pointer hover:bg-muted/50 hover:border-primary/50 transition-all duration-200 active:scale-[0.98]" : ""}
+      onClick={onClick}
+    >
       <CardContent className="p-4 lg:p-6">
         <div className="flex items-center justify-between">
           <div className="space-y-1">
@@ -120,7 +125,14 @@ function StatCard({
   )
 }
 
-function StatsGrid({ stats }: { stats: Stats }) {
+function StatsGrid({ stats, isAdmin }: { stats: Stats; isAdmin: boolean }) {
+  const { setActiveSection, setArticleStatusFilter } = useAdminStore()
+
+  const handleArticlesClick = (status: string) => {
+    setArticleStatusFilter(status)
+    setActiveSection('articles')
+  }
+
   return (
     <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
       <StatCard
@@ -128,36 +140,42 @@ function StatsGrid({ stats }: { stats: Stats }) {
         value={stats.totalArticles}
         icon={<FileText className="h-6 w-6" />}
         description="Todos los artículos en el sistema"
+        onClick={() => handleArticlesClick('ALL')}
       />
       <StatCard
         title="Publicados"
         value={stats.publishedArticles}
         icon={<CheckCircle2 className="h-6 w-6" />}
         description="Artículos publicados en vivo"
+        onClick={() => handleArticlesClick('PUBLISHED')}
       />
       <StatCard
         title="Borradores"
         value={stats.draftArticles}
         icon={<FilePenLine className="h-6 w-6" />}
         description="Borradores sin publicar"
+        onClick={() => handleArticlesClick('DRAFT')}
       />
       <StatCard
         title="Pendientes de Revisión"
         value={stats.pendingArticles}
         icon={<Clock className="h-6 w-6" />}
         description="Esperando revisión"
+        onClick={() => handleArticlesClick('PENDING_REVIEW')}
       />
       <StatCard
         title="Total de Usuarios"
         value={stats.totalUsers}
         icon={<Users className="h-6 w-6" />}
         description="Usuarios activos"
+        onClick={isAdmin ? () => setActiveSection('users') : undefined}
       />
       <StatCard
         title="Total de Vistas"
         value={stats.totalViews.toLocaleString()}
         icon={<Eye className="h-6 w-6" />}
         description="Vistas totales de artículos"
+        onClick={() => handleArticlesClick('ALL')}
       />
     </div>
   )
@@ -402,7 +420,7 @@ export default function Dashboard({ isAdmin }: DashboardProps) {
       {isLoading || !stats ? (
         <StatsGridSkeleton />
       ) : (
-        <StatsGrid stats={stats} />
+        <StatsGrid stats={stats} isAdmin={isAdmin} />
       )}
 
       {/* Interactive Charts */}
