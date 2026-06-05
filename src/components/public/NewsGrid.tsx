@@ -5,9 +5,9 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { Newspaper, SlidersHorizontal } from 'lucide-react'
 import { usePublicStore } from '@/store/public-store'
 import { ArticleCard } from './ArticleCard'
-import { CategoryBadge } from './CategoryBadge'
 import { Skeleton } from '@/components/ui/skeleton'
 import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
 import {
   Pagination,
   PaginationContent,
@@ -223,7 +223,7 @@ export function NewsGrid() {
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.95 }}
-                  transition={{ duration: 0.5, cubicBezier: [0.16, 1, 0.3, 1] }}
+                  transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
                 >
                   <ArticleCard
                     article={article}
@@ -333,7 +333,7 @@ export function NewsGrid() {
                     </span>
                     <div className="space-y-1">
                       {art.category && (
-                        <span className="text-[10px] font-bold uppercase tracking-wider" style={{ color: art.color }}>
+                        <span className="text-[10px] font-bold uppercase tracking-wider" style={{ color: art.category.color }}>
                           {art.category.name}
                         </span>
                       )}

@@ -23,7 +23,7 @@ export function ArticleCard({ article, onClick }: ArticleCardProps) {
     <motion.article
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, cubicBezier: [0.16, 1, 0.3, 1] }}
+      transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
       className="group cursor-pointer overflow-hidden rounded-2xl border border-border/40 bg-card/50 backdrop-blur-sm card-shadow-hover transition-all duration-300"
       onClick={onClick}
       role="button"
