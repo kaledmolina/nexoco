@@ -26,7 +26,7 @@ export function PublicFooter() {
           <div>
             <div className="mb-3 flex items-center gap-2">
               {siteLogo ? (
-                <img src={siteLogo} alt={siteName} className="h-8 max-w-[150px] object-contain" />
+                <img src={siteLogo} alt={siteName} className="h-12 max-w-[200px] object-contain w-auto" />
               ) : (
                 <>
                   <span

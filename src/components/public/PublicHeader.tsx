@@ -75,7 +75,7 @@ export function PublicHeader({ onLoginClick }: PublicHeaderProps) {
           className="flex items-center gap-2 text-lg font-extrabold tracking-tight"
         >
           {siteLogo ? (
-            <img src={siteLogo} alt={siteName} className="h-8 max-w-[150px] object-contain" />
+            <img src={siteLogo} alt={siteName} className="h-12 max-w-[200px] object-contain w-auto" />
           ) : (
             <>
               <span className="text-destructive" style={{ fontFamily: 'Georgia, serif', fontSize: '1.5rem' }}>
