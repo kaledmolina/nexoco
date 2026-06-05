@@ -12,6 +12,8 @@ const lora = Lora({
   weight: ["400", "500", "600", "700"],
 });
 
+export const dynamic = 'force-dynamic';
+
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
