@@ -159,9 +159,8 @@ export function PublicHeader({ onLoginClick }: PublicHeaderProps) {
             </Sheet>
 
             {/* Date Display */}
-            <div className="hidden md:flex flex-col text-[10px] text-muted-foreground leading-normal border-l border-border/40 pl-3">
+            <div className="hidden md:flex text-[11px] text-muted-foreground border-l border-border/40 pl-3">
               <span className="font-semibold text-foreground/80">{displayDate}</span>
-              <span>ISSN 2745-2794</span>
             </div>
           </div>
 
