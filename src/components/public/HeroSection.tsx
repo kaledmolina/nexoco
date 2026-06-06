@@ -43,7 +43,7 @@ export function HeroSection({ articles, onArticleClick }: HeroSectionProps) {
           >
             <div className="flex items-center gap-2 text-[10px] sm:text-xs">
               {leadArticle.category && (
-                <span className="font-extrabold uppercase tracking-widest text-[#e11b22]">
+                <span className="font-extrabold uppercase tracking-widest text-primary">
                   {leadArticle.category.name}
                 </span>
               )}
@@ -90,7 +90,7 @@ export function HeroSection({ articles, onArticleClick }: HeroSectionProps) {
                 />
               ) : (
                 <div className="flex h-full w-full items-center justify-center bg-secondary/50">
-                  <span className="text-2xl font-black font-heading text-muted-foreground/30">Semana</span>
+                  <span className="text-2xl font-black font-heading text-muted-foreground/30">Enfoque360</span>
                 </div>
               )}
             </div>
@@ -142,7 +142,7 @@ export function HeroSection({ articles, onArticleClick }: HeroSectionProps) {
                     {art.category && (
                       <span 
                         className="text-[9px] font-extrabold uppercase tracking-widest"
-                        style={{ color: '#e11b22' }}
+                        style={{ color: 'var(--primary)' }}
                       >
                         {art.category.name}
                       </span>
@@ -158,12 +158,12 @@ export function HeroSection({ articles, onArticleClick }: HeroSectionProps) {
 
           {/* Right Column: "Le puede interesar" (3 Columns) */}
           <div className="lg:col-span-3">
-            <div className="bg-[#fdf2f2] border-t-2 border-[#e11b22] p-4 rounded-r-md">
-              <h3 className="text-xs font-extrabold uppercase tracking-widest text-[#e11b22] mb-3">
+            <div className="bg-primary/5 border-t-2 border-primary p-4 rounded-r-md">
+              <h3 className="text-xs font-extrabold uppercase tracking-widest text-primary mb-3">
                 Le puede interesar
               </h3>
 
-              <div className="flex flex-col gap-3.5 divide-y divide-[#e11b22]/10">
+              <div className="flex flex-col gap-3.5 divide-y divide-primary/10">
                 {interestArticles.map((art, idx) => (
                   <div
                     key={art.id}

@@ -176,7 +176,7 @@ export function PublicHeader({ onLoginClick }: PublicHeaderProps) {
               {siteLogo ? (
                 <img src={siteLogo} alt={siteName} className="h-10 md:h-12 object-contain" />
               ) : (
-                <h1 className="text-3xl md:text-4.5xl font-black font-heading tracking-tight text-primary uppercase" style={{ color: '#e11b22', fontFamily: 'var(--font-lora)' }}>
+                <h1 className="text-3xl md:text-4.5xl font-black font-heading tracking-tight text-primary uppercase" style={{ color: 'var(--primary)', fontFamily: 'var(--font-lora)' }}>
                   {siteName}
                 </h1>
               )}
@@ -276,7 +276,7 @@ export function PublicHeader({ onLoginClick }: PublicHeaderProps) {
                   ? 'text-primary border-primary font-black'
                   : 'border-transparent text-muted-foreground hover:text-foreground'
               }`}
-              style={selectedCategory === null ? { color: '#e11b22', borderBottomColor: '#e11b22' } : undefined}
+              style={selectedCategory === null ? { color: 'var(--primary)', borderBottomColor: 'var(--primary)' } : undefined}
             >
               Últimas noticias
             </button>
