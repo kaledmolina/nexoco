@@ -1,33 +1,33 @@
 services:
   db:
     image: mysql:8.0
-    container_name: mysql-database-vozpublica
+    container_name: mysql-database-nexoco
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: rootpassword
-      MYSQL_DATABASE: vozpublica_db
+      MYSQL_DATABASE: nexoco_db
     # Los puertos 3306 se eliminan para producción por seguridad y para evitar conflictos.
     # La web se conecta internamente a través de la red del contenedor.
     volumes:
-      - mysql_data_vozpublica:/var/lib/mysql
+      - mysql_data_nexoco:/var/lib/mysql
 
   web:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: nextjs-web-app-vozpublica
+    container_name: nextjs-web-app-nexoco
     ports:
-      - "127.0.0.1:3005:3000" # Modificado para obligar a pasar por CloudPanel en puerto 3005 (para evitar choques con puerto 3004 de enfoque360 y 3003 de puntonews)
+      - "127.0.0.1:3006:3000" # Modificado para obligar a pasar por CloudPanel en puerto 3006 (para evitar choques con puerto 3005 de vozpublica, 3004 de enfoque360 y 3003 de puntonews)
     depends_on:
       - db
     environment:
-      - DATABASE_URL=mysql://root:rootpassword@db:3306/vozpublica_db
-      - NEXTAUTH_URL=https://vozpublica.online # CRÍTICO para que el login funcione en producción
+      - DATABASE_URL=mysql://root:rootpassword@db:3306/nexoco_db
+      - NEXTAUTH_URL=https://nexoco.site # CRÍTICO para que el login funcione en producción
       - NEXTAUTH_SECRET=news-portal-secret-key-change-in-production
       - HOSTNAME=0.0.0.0 # <-- LA SOLUCIÓN AL ERROR 502
     volumes:
-      - /home/vozpublica/htdocs/vozpublica.online/public/uploads:/app/public/uploads
+      - /home/nexoco/htdocs/nexoco.site/public/uploads:/app/public/uploads
     restart: always
 
 volumes:
-  mysql_data_vozpublica:
+  mysql_data_nexoco:
